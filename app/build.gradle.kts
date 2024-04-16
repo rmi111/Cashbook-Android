@@ -64,7 +64,7 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
     implementation("com.google.firebase:firebase-analytics")
-    
+
     // Declare the dependency for the Firebase Authentication library
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")

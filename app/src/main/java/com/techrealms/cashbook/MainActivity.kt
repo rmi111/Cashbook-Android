@@ -12,6 +12,32 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.techrealms.cashbook.ui.theme.CashBookTheme
 
+class CashBookAppActivity: ComponentActivity()
+{
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
+        super.onCreate(savedInstanceState)
+
+        setContent{
+           CashBookApp()
+        }
+    }
+}
+
+@Composable
+fun CashBookApp(){
+    CashBookTheme {
+        // A surface container using the 'background' color from the theme
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        )
+        {
+            Greeting("Android")
+        }
+    }
+}
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
