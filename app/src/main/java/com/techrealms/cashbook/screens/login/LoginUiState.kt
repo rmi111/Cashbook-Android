@@ -1,4 +1,4 @@
-package com.techrealms.cashbook.screens
+package com.techrealms.cashbook.screens.login
 
 data class LoginUiState(
     val email: String = "",
