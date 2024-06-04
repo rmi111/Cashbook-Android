@@ -25,7 +25,7 @@ import com.techrealms.cashbook.R.string as AppText
 
 @Composable
 fun LoginScreen(
-                //openAndPopUp: (String,String) -> Unit,
+                openAndPopup: (String,String) -> Unit,
                 viewModel: LoginViewModel = hiltViewModel()
                 )
 {
@@ -34,7 +34,7 @@ fun LoginScreen(
     LoginScreenContent(uiState = uiState,
         onEmailChange = viewModel::onEmailChange,
         onPasswordChange = viewModel::onPasswordChange,
-        onSignInClick = { },//viewModel.onSignInClick(openAndPopUp)},
+        onSignInClick = { viewModel.onSignInClick(openAndPopup)},
         onForgotPasswordClick = viewModel::onForgotPasswordClick
         )
 }

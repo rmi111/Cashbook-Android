@@ -1,6 +1,7 @@
 package com.techrealms.cashbook.model.service
 
 interface ConfigurationService {
-    fun fetchConfiguration()
-    fun getShowTaskEditButtonConfig(): Boolean
+    suspend fun fetchConfiguration(): Boolean
+    val isShowTaskEditButton: Boolean
+
 }

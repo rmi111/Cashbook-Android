@@ -68,8 +68,11 @@ dependencies {
 
     // Declare the dependency for the Firebase Authentication library
     implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("androidx.navigation:navigation-compose:2.7.4")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
     implementation("com.google.dagger:hilt-android:2.47")
+
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     ksp("com.google.dagger:hilt-compiler:2.47")
