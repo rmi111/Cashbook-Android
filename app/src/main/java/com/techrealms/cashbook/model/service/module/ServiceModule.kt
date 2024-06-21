@@ -3,9 +3,11 @@ package com.techrealms.cashbook.model.service.module
 import com.techrealms.cashbook.model.service.AccountService
 import com.techrealms.cashbook.model.service.ConfigurationService
 import com.techrealms.cashbook.model.service.LogService
+import com.techrealms.cashbook.model.service.StorageService
 import com.techrealms.cashbook.model.service.impl.AccountServiceImpl
 import com.techrealms.cashbook.model.service.impl.ConfigurationServiceImpl
 import com.techrealms.cashbook.model.service.impl.LogServiceImpl
+import com.techrealms.cashbook.model.service.impl.StorageServiceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -23,4 +25,7 @@ abstract class ServiceModule
 
     @Binds
     abstract fun provideConfigurationService(impl: ConfigurationServiceImpl): ConfigurationService
+
+    @Binds
+    abstract fun provideStorageService(impl: StorageServiceImpl): StorageService
 }

@@ -29,7 +29,7 @@ class ConfigurationServiceImpl @Inject constructor(): ConfigurationService{
             remoteConfig.fetchAndActivate().await()
         }
 
-    override val isShowTaskEditButton: Boolean
+    override val isShowTaskEditButtonConfig: Boolean
         get() = remoteConfig[SHOW_TASK_EDIT_BUTTON_KEY].asBoolean()
 
     companion object{

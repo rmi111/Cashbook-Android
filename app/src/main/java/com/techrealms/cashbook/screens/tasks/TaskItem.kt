@@ -27,6 +27,7 @@ import com.techrealms.cashbook.common.ext.hasDueDate
 import com.techrealms.cashbook.common.ext.hasDueTime
 import com.techrealms.cashbook.model.Task
 import com.techrealms.cashbook.ui.theme.CashBookTheme
+import java.util.Date
 import com.techrealms.cashbook.R.drawable as AppIcon
 
 @Composable
@@ -70,7 +71,7 @@ fun TaskItem(task: Task,
 fun TaskItemPreview(){
     CashBookTheme {
         TaskItem(task = Task(
-            "","AA", "","","","",false, false,""
+            "", Date(), "","","","","false", "false",false
         ),
             onActionClick = {},
             onCheckChange ={},

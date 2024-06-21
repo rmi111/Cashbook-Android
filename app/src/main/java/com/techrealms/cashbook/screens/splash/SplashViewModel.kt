@@ -2,6 +2,8 @@ package com.techrealms.cashbook.screens.splash
 
 import androidx.compose.runtime.mutableStateOf
 import com.google.firebase.auth.FirebaseAuthException
+import com.techrealms.cashbook.SPLASH_SCREEN
+import com.techrealms.cashbook.TASKS_SCREEN
 import com.techrealms.cashbook.model.service.AccountService
 import com.techrealms.cashbook.model.service.ConfigurationService
 import com.techrealms.cashbook.model.service.LogService
@@ -21,13 +23,13 @@ class SplashViewModel @Inject constructor(configurationService: ConfigurationSer
 
     fun onAppStart(openAndPopup: (String, String) -> Unit){
         showError.value = false
-        createAnonymousAccount(openAndPopup)
-//        if(accountService.hasUser)
-//            openAndPopup(TASKS_SCREEN, SPLASH_SCREEN)
-//        else
-//        {
-//            createAnonymousAccount(openAndPopup)
-//        }
+        //createAnonymousAccount(openAndPopup)
+        if(accountService.hasUser)
+            openAndPopup(TASKS_SCREEN, SPLASH_SCREEN)
+        else
+        {
+            createAnonymousAccount(openAndPopup)
+        }
     }
 
     private fun createAnonymousAccount(openAndPopup: (String, String) -> Unit){
@@ -39,7 +41,7 @@ class SplashViewModel @Inject constructor(configurationService: ConfigurationSer
                 throw ex
             }
 
-            //openAndPopup(TASKS_SCREEN, SPLASH_SCREEN)
+            openAndPopup(TASKS_SCREEN, SPLASH_SCREEN)
         }
     }
 }

@@ -1,18 +1,16 @@
 package com.techrealms.cashbook.model.service
 
 import com.techrealms.cashbook.model.Task
+import kotlinx.coroutines.flow.Flow
 
 interface StorageService {
-    fun addListener(
-        userId: String,
-        onDocumentEvent: (Boolean, Task) -> Unit,
-        onError: (Throwable) -> Unit
-    )
+    val tasks: Flow<List<Task>>
 
-    fun removeListener()
-    fun getTask(taskId: String, onError: (Throwable) -> Unit, onSuccess: (Task) -> Unit)
-    fun saveTask(task: Task, onResult: (Throwable?) -> Unit)
-    fun updateTask(task: Task, onResult: (Throwable?) -> Unit)
-    fun deleteTask(taskId: String, onResult: (Throwable?) -> Unit)
-    fun deleteAllForUser(userId: String, onResult: (Throwable?) -> Unit)
+    suspend fun getTask(taskId: String): Task?
+    suspend fun save(task: Task): String
+    suspend fun update(task: Task)
+    suspend fun delete(taskId: String)
+    suspend fun getCompletedTasksCount(): Int
+    suspend fun getImportantCompletedTasksCount(): Int
+    suspend fun getMediumHighTasksToCompleteCount(): Int
 }
