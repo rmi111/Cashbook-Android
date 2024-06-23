@@ -5,17 +5,18 @@ import com.techrealms.cashbook.EDIT_TASK_SCREEN
 import com.techrealms.cashbook.SETTINGS_SCREEN
 import com.techrealms.cashbook.TASK_ID
 import com.techrealms.cashbook.model.Task
-import com.techrealms.cashbook.model.service.ConfigurationService
-import com.techrealms.cashbook.model.service.LogService
-import com.techrealms.cashbook.model.service.StorageService
+import com.techrealms.cashbook.service.ConfigurationService
+import com.techrealms.cashbook.service.LogService
+import com.techrealms.cashbook.service.StorageService
 import com.techrealms.cashbook.screens.CashBookViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
 class TasksViewModel @Inject constructor(logService: LogService,
-    private val storageService: StorageService,
-    private val configurationService: ConfigurationService): CashBookViewModel(logService)
+                                         private val storageService: StorageService,
+                                         private val configurationService: ConfigurationService
+): CashBookViewModel(logService)
 {
         val options = mutableStateOf<List<String>>(listOf())
         val tasks = storageService.tasks

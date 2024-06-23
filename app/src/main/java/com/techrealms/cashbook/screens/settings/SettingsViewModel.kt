@@ -4,9 +4,9 @@ package com.techrealms.cashbook.screens.settings
 import com.techrealms.cashbook.LOGIN_SCREEN
 import com.techrealms.cashbook.SIGN_UP_SCREEN
 import com.techrealms.cashbook.SPLASH_SCREEN
-import com.techrealms.cashbook.model.service.AccountService
-import com.techrealms.cashbook.model.service.LogService
-import com.techrealms.cashbook.model.service.StorageService
+import com.techrealms.cashbook.service.AccountService
+import com.techrealms.cashbook.service.LogService
+import com.techrealms.cashbook.service.StorageService
 import com.techrealms.cashbook.screens.CashBookViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.map

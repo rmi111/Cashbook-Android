@@ -4,8 +4,8 @@ import androidx.compose.runtime.mutableStateOf
 import com.techrealms.cashbook.LOGIN_SCREEN
 import com.techrealms.cashbook.SETTINGS_SCREEN
 import com.techrealms.cashbook.common.snackbar.SnackbarManager
-import com.techrealms.cashbook.model.service.AccountService
-import com.techrealms.cashbook.model.service.LogService
+import com.techrealms.cashbook.service.AccountService
+import com.techrealms.cashbook.service.LogService
 import com.techrealms.cashbook.screens.CashBookViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import isValidEmail
@@ -16,7 +16,8 @@ import com.techrealms.cashbook.R.string as AppText
 @HiltViewModel
 class LoginViewModel @Inject constructor(
     private val accountService: AccountService,
-    private val logService: LogService):
+    private val logService: LogService
+):
     CashBookViewModel(logService)
 {
     var uiState = mutableStateOf(LoginUiState())

@@ -4,26 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.techrealms.cashbook.common.snackbar.SnackbarManager
 import com.techrealms.cashbook.common.snackbar.toSnackbarMessage
-import com.techrealms.cashbook.model.service.LogService
+import com.techrealms.cashbook.service.LogService
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 open class CashBookViewModel(private val logService: LogService): ViewModel()
 {
-//    open val showErrorExceptionHandler = CoroutineExceptionHandler {_, throwable ->
-//        onError(throwable)
-//    }
-//
-//    open val logErrorExceptionHandler = CoroutineExceptionHandler {_, throwable ->
-//        logService.logNonFatalCrash(throwable)
-//    }
-//
-//    open fun onError(error: Throwable){
-//        SnackbarManager.showMessage(error.toSnackbarMessage())
-//        logService.logNonFatalCrash(error)
-//    }
-
     fun launchCatching(snackbar: Boolean = true, block: suspend CoroutineScope.() -> Unit) =
         viewModelScope.launch(
             CoroutineExceptionHandler {_, throwable ->
@@ -34,5 +21,4 @@ open class CashBookViewModel(private val logService: LogService): ViewModel()
             },
             block = block
         )
-
 }

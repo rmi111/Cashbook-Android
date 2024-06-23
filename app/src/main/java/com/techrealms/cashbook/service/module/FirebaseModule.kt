@@ -1,4 +1,4 @@
-package com.techrealms.cashbook.model.service.module
+package com.techrealms.cashbook.service.module
 
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth

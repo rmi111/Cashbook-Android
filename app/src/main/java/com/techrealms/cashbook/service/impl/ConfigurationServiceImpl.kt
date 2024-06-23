@@ -1,17 +1,17 @@
-package com.techrealms.cashbook.model.service.impl
+package com.techrealms.cashbook.service.impl
 
 import com.google.firebase.BuildConfig
 import com.google.firebase.Firebase
 import com.google.firebase.remoteconfig.get
 import com.google.firebase.remoteconfig.remoteConfig
 import com.google.firebase.remoteconfig.remoteConfigSettings
-import com.techrealms.cashbook.model.service.ConfigurationService
-import com.techrealms.cashbook.model.service.trace
+import com.techrealms.cashbook.service.ConfigurationService
+import com.techrealms.cashbook.service.trace
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 import com.techrealms.cashbook.R.xml as AppConfig
 
-class ConfigurationServiceImpl @Inject constructor(): ConfigurationService{
+class ConfigurationServiceImpl @Inject constructor(): ConfigurationService {
     private val remoteConfig
         get() = Firebase.remoteConfig
 

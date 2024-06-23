@@ -1,4 +1,4 @@
-package com.techrealms.cashbook.model.service
+package com.techrealms.cashbook.service
 
 interface ConfigurationService {
     suspend fun fetchConfiguration(): Boolean

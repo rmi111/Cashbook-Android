@@ -1,4 +1,4 @@
-package com.techrealms.cashbook.model.service
+package com.techrealms.cashbook.service
 
 import com.google.firebase.perf.trace
 import com.google.firebase.perf.metrics.Trace

@@ -4,8 +4,8 @@ import androidx.compose.runtime.mutableStateOf
 import com.techrealms.cashbook.SETTINGS_SCREEN
 import com.techrealms.cashbook.SIGN_UP_SCREEN
 import com.techrealms.cashbook.common.snackbar.SnackbarManager
-import com.techrealms.cashbook.model.service.AccountService
-import com.techrealms.cashbook.model.service.LogService
+import com.techrealms.cashbook.service.AccountService
+import com.techrealms.cashbook.service.LogService
 import com.techrealms.cashbook.screens.CashBookViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import isValidEmail

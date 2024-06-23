@@ -1,8 +1,8 @@
 package com.techrealms.cashbook.screens.stats
 
 import androidx.compose.runtime.mutableStateOf
-import com.techrealms.cashbook.model.service.LogService
-import com.techrealms.cashbook.model.service.StorageService
+import com.techrealms.cashbook.service.LogService
+import com.techrealms.cashbook.service.StorageService
 import com.techrealms.cashbook.screens.CashBookViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

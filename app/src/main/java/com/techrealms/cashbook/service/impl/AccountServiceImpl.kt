@@ -1,10 +1,10 @@
-package com.techrealms.cashbook.model.service.impl
+package com.techrealms.cashbook.service.impl
 
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.techrealms.cashbook.model.User
-import com.techrealms.cashbook.model.service.AccountService
-import com.techrealms.cashbook.model.service.trace
+import com.techrealms.cashbook.service.AccountService
+import com.techrealms.cashbook.service.trace
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
