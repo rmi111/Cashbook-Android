@@ -2,12 +2,13 @@ package com.techrealms.cashbook.screens.splash
 
 import androidx.compose.runtime.mutableStateOf
 import com.google.firebase.auth.FirebaseAuthException
+import com.techrealms.cashbook.BUSINESS_ADD_SCREEN
+import com.techrealms.cashbook.LOGIN_SCREEN
 import com.techrealms.cashbook.SPLASH_SCREEN
-import com.techrealms.cashbook.TASKS_SCREEN
+import com.techrealms.cashbook.screens.CashBookViewModel
 import com.techrealms.cashbook.service.AccountService
 import com.techrealms.cashbook.service.ConfigurationService
 import com.techrealms.cashbook.service.LogService
-import com.techrealms.cashbook.screens.CashBookViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 @HiltViewModel
@@ -26,7 +27,9 @@ class SplashViewModel @Inject constructor(configurationService: ConfigurationSer
         showError.value = false
         //createAnonymousAccount(openAndPopup)
         if(accountService.hasUser)
-            openAndPopup(TASKS_SCREEN, SPLASH_SCREEN)
+        {
+            openAndPopup(BUSINESS_ADD_SCREEN, SPLASH_SCREEN)
+        }
         else
         {
             createAnonymousAccount(openAndPopup)
@@ -42,7 +45,7 @@ class SplashViewModel @Inject constructor(configurationService: ConfigurationSer
                 throw ex
             }
 
-            openAndPopup(TASKS_SCREEN, SPLASH_SCREEN)
+            openAndPopup(LOGIN_SCREEN, SPLASH_SCREEN)
         }
     }
 }

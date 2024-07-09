@@ -24,6 +24,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.techrealms.cashbook.BUSINESS_ADD_SCREEN
 import com.techrealms.cashbook.CashBookAppState
 import com.techrealms.cashbook.EDIT_TASK_SCREEN
 import com.techrealms.cashbook.LOGIN_SCREEN
@@ -31,17 +32,14 @@ import com.techrealms.cashbook.SETTINGS_SCREEN
 import com.techrealms.cashbook.SIGN_UP_SCREEN
 import com.techrealms.cashbook.SPLASH_SCREEN
 import com.techrealms.cashbook.STATS_SCREEN
-import com.techrealms.cashbook.TASKS_SCREEN
 import com.techrealms.cashbook.TASK_ID
 import com.techrealms.cashbook.TASK_ID_ARG
 import com.techrealms.cashbook.common.snackbar.SnackbarManager
-import com.techrealms.cashbook.screens.edit_task.EditTaskScreen
+import com.techrealms.cashbook.screens.business.add_business.AddBusinessScreen
 import com.techrealms.cashbook.screens.login.LoginScreen
 import com.techrealms.cashbook.screens.settings.SettingsScreen
 import com.techrealms.cashbook.screens.sign_up.SignUpScreen
 import com.techrealms.cashbook.screens.splash.SplashScreen
-import com.techrealms.cashbook.screens.stats.StatsScreen
-import com.techrealms.cashbook.screens.tasks.TasksScreen
 import com.techrealms.cashbook.ui.theme.CashBookTheme
 import kotlinx.coroutines.CoroutineScope
 
@@ -106,7 +104,7 @@ fun NavGraphBuilder.cashBookGraph(appState: CashBookAppState){
     }
 
     composable(STATS_SCREEN) {
-        StatsScreen()
+        //StatsScreen()
     }
 
     composable(LOGIN_SCREEN) {
@@ -117,8 +115,11 @@ fun NavGraphBuilder.cashBookGraph(appState: CashBookAppState){
         SignUpScreen(openAndPopUp = { route, popUp -> appState.navigateAndPopUp(route, popUp) })
     }
 
-    composable(TASKS_SCREEN) { TasksScreen(openScreen = { route -> appState.navigate(route) }) }
+    //composable(TASKS_SCREEN) { TasksScreen(openScreen = { route -> appState.navigate(route) }) }
 
+    composable(BUSINESS_ADD_SCREEN){
+        AddBusinessScreen(popupScreen = { appState.popUp()})
+    }
     composable(
         route = "$EDIT_TASK_SCREEN$TASK_ID_ARG",
         arguments = listOf(navArgument(TASK_ID) {
@@ -126,9 +127,9 @@ fun NavGraphBuilder.cashBookGraph(appState: CashBookAppState){
             defaultValue = null
         })
     ) {
-        EditTaskScreen(
-            popUpScreen = { appState.popUp() }
-        )
+//        EditTaskScreen(
+//            popUpScreen = { appState.popUp() }
+//        )
     }
 }
 

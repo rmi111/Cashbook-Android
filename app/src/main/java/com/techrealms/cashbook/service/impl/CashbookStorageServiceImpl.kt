@@ -25,7 +25,9 @@ class CashbookStorageServiceImpl @Inject constructor(
     @OptIn(ExperimentalCoroutinesApi::class)
     override val cashbook:Flow<List<Cashbook>>
         get() = auth.currentUser.flatMapLatest { user ->
-        firestore.collection(BOOK_COLLECTION).whereEqualTo(USER_ID_FIELD, user.id)
+        firestore
+            .collection(BOOK_COLLECTION)
+            .whereEqualTo(USER_ID_FIELD, user.id)
             .orderBy(CREATED_AT_FIELD, Query.Direction.DESCENDING)
             .dataObjects()
         }
@@ -36,16 +38,28 @@ class CashbookStorageServiceImpl @Inject constructor(
     override suspend fun save(cashbook: Cashbook): String =
         trace(SAVE_TASK_TRACE){
             val updatedTask = cashbook.copy(userId = auth.currentUserId)
-            firestore.collection(BOOK_COLLECTION).add(updatedTask).await().id
+            firestore
+                .collection(BOOK_COLLECTION)
+                .add(updatedTask)
+                .await()
+                .id
         }
 
     override suspend fun update(cashbook: Cashbook): Unit =
-        trace(SAVE_TASK_TRACE) {
-            firestore.collection(BOOK_COLLECTION).document(cashbook.id).set(cashbook).await()
+        trace(UPDATE_TASK_TRACE) {
+            firestore
+                .collection(BOOK_COLLECTION)
+                .document(cashbook.id)
+                .set(cashbook)
+                .await()
         }
 
     override suspend fun delete(taskId: String) {
-        firestore.collection(BOOK_COLLECTION).document(taskId).delete().await()
+        firestore
+            .collection(BOOK_COLLECTION)
+            .document(taskId)
+            .delete()
+            .await()
     }
 
 //    override suspend fun getCompletedTasksCount(): Int {
