@@ -19,10 +19,6 @@ class AddBusinessViewModel @Inject constructor(
 {
     val business = mutableStateOf(Business())
 
-    init{
-
-    }
-
     fun onTitleChanged(newValue: String){
         business.value = business.value.copy(title = newValue)
     }

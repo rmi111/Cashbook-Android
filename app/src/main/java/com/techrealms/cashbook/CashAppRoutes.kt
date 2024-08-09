@@ -8,6 +8,15 @@ const val BUSINESS_ADD_SCREEN = "BusinessAddScreen"
 const val TASKS_SCREEN = "TasksScreen"
 const val EDIT_TASK_SCREEN = "EditTaskScreen"
 const val STATS_SCREEN = "StatsScreen"
+const val BUSINESS_SCREEN = "BusinessScreen"
+const val CASHBOOK_SCREEN = "CashbookScreen"
+const val CASHBOOK_ADD_SCREEN = "CashbookAddScreen"
 
 const val TASK_ID = "taskId"
 const val TASK_ID_ARG = "?$TASK_ID={$TASK_ID}"
+
+const val BUSINESS_ID = "businessId"
+const val BUSINESS_ID_ARG = "?$BUSINESS_ID={$BUSINESS_ID}"
+
+const val CASHBOOK_ID = "cashbookId"
+const val CASHBOOK_ID_ARG = "?$CASHBOOK_ID={$CASHBOOK_ID}"

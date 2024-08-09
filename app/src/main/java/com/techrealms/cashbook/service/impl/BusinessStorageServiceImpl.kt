@@ -1,7 +1,6 @@
 package com.techrealms.cashbook.service.impl
 
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.dataObjects
 import com.google.firebase.firestore.toObject
 import com.techrealms.cashbook.model.Business
@@ -32,7 +31,7 @@ class BusinessStorageServiceImpl @Inject constructor(
             firestore
                 .collection(BUSINESS_COLLECTION)
                 .whereEqualTo(USER_ID_FIELD, user.id)
-                .orderBy(CREATED_AT_FIELD, Query.Direction.DESCENDING)
+                //.orderBy(CREATED_AT_FIELD, Query.Direction.DESCENDING)
                 .dataObjects()
         }
 

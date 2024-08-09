@@ -25,6 +25,11 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.techrealms.cashbook.BUSINESS_ADD_SCREEN
+import com.techrealms.cashbook.BUSINESS_ID
+import com.techrealms.cashbook.BUSINESS_ID_ARG
+import com.techrealms.cashbook.BUSINESS_SCREEN
+import com.techrealms.cashbook.CASHBOOK_ADD_SCREEN
+import com.techrealms.cashbook.CASHBOOK_SCREEN
 import com.techrealms.cashbook.CashBookAppState
 import com.techrealms.cashbook.EDIT_TASK_SCREEN
 import com.techrealms.cashbook.LOGIN_SCREEN
@@ -36,6 +41,9 @@ import com.techrealms.cashbook.TASK_ID
 import com.techrealms.cashbook.TASK_ID_ARG
 import com.techrealms.cashbook.common.snackbar.SnackbarManager
 import com.techrealms.cashbook.screens.business.add_business.AddBusinessScreen
+import com.techrealms.cashbook.screens.business.business_screen.BusinessScreen
+import com.techrealms.cashbook.screens.cashbook.add_cashbook.AddCashbookScreen
+import com.techrealms.cashbook.screens.cashbook.cashbook_screen.CashbookScreen
 import com.techrealms.cashbook.screens.login.LoginScreen
 import com.techrealms.cashbook.screens.settings.SettingsScreen
 import com.techrealms.cashbook.screens.sign_up.SignUpScreen
@@ -120,6 +128,33 @@ fun NavGraphBuilder.cashBookGraph(appState: CashBookAppState){
     composable(BUSINESS_ADD_SCREEN){
         AddBusinessScreen(popupScreen = { appState.popUp()})
     }
+
+    composable(BUSINESS_SCREEN){
+        BusinessScreen(openScreen = { route -> appState.navigate(route) })
+    }
+
+    composable(route = "$CASHBOOK_SCREEN$BUSINESS_ID_ARG",
+        arguments = listOf(navArgument(BUSINESS_ID){
+            nullable = true
+            defaultValue = null
+        }
+    )){
+        CashbookScreen(openScreen = {route -> appState.navigate(route)})
+    }
+
+    composable(route = "$CASHBOOK_ADD_SCREEN$BUSINESS_ID_ARG",
+        arguments = listOf(navArgument(BUSINESS_ID){
+            nullable = true
+            defaultValue = null
+        }
+        )){
+        AddCashbookScreen(popupScreen = { appState.popUp()})
+    }
+
+//    composable(CASHBOOK_ADD_SCREEN){
+//        AddCashbookScreen(popupScreen = { appState.popUp()})
+//    }
+
     composable(
         route = "$EDIT_TASK_SCREEN$TASK_ID_ARG",
         arguments = listOf(navArgument(TASK_ID) {

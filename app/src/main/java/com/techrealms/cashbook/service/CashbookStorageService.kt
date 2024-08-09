@@ -5,13 +5,10 @@ import kotlinx.coroutines.flow.Flow
 
 interface CashbookStorageService
 {
-    val cashbook: Flow<List<Cashbook>>
+    val cashbook:(businessDocId: String) -> Flow<List<Cashbook>>
 
-    suspend fun getCashbook(cashbookId: String): Cashbook?
-    suspend fun save(cashbook: Cashbook): String
+    suspend fun getCashbook(businessDocId: String, cashbookId: String): Cashbook?
+    suspend fun save(cashbook: Cashbook,businessDocId: String): String
     suspend fun update(cashbook: Cashbook)
     suspend fun delete(cashbookId: String)
-//    suspend fun getCompletedTasksCount(): Int
-//    suspend fun getImportantCompletedTasksCount(): Int
-//    suspend fun getMediumHighTasksToCompleteCount(): Int
 }
