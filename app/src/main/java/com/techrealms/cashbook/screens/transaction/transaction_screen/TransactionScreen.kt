@@ -1,4 +1,4 @@
-package com.techrealms.cashbook.screens.cashbook.cashbook_screen
+package com.techrealms.cashbook.screens.transaction.transaction_screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -23,32 +23,30 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.techrealms.cashbook.common.composable.ActionToolbar
 import com.techrealms.cashbook.common.ext.smallSpacer
 import com.techrealms.cashbook.common.ext.toolbarActions
-import com.techrealms.cashbook.model.Cashbook
+import com.techrealms.cashbook.model.Transaction
 import com.techrealms.cashbook.ui.theme.CashBookTheme
 import com.techrealms.cashbook.R.drawable as AppIcon
 import com.techrealms.cashbook.R.string as AppText
 
 @Composable
 @ExperimentalMaterial3Api
-fun CashbookScreen(
+fun TransactionScreen(
     openScreen: (String) -> Unit,
-    viewModel: CashbookScreenViewModel = hiltViewModel()
-    )
+    viewModel: TransactionScreenViewModel = hiltViewModel()
+)
 {
-    val cashbook = viewModel.cashbook.collectAsState(emptyList())
+    val transaction = viewModel.transaction.collectAsState(emptyList())
 
-    CashbookScreenContent(cashbook = cashbook.value,
+    TransactionScreenContent(transaction = transaction.value,
         openScreen = openScreen,
-        onAddClicked = viewModel::onAddClick,
-        onCashbookClick = viewModel::onCashbookClick)
+        onAddClicked = viewModel::onAddClick)
 }
 
 @Composable
 @ExperimentalMaterial3Api
-fun CashbookScreenContent(cashbook: List<Cashbook>,
+fun TransactionScreenContent(transaction: List<Transaction>,
                           modifier: Modifier = Modifier,
                           onAddClicked: ((String)->(Unit))-> Unit,
-                          onCashbookClick: ((String) -> Unit, Cashbook) -> Unit,
                           openScreen: (String) -> Unit)
 {
     Scaffold(
@@ -56,13 +54,13 @@ fun CashbookScreenContent(cashbook: List<Cashbook>,
             FloatingActionButton(onClick = {
                 onAddClicked(openScreen)
             },
-                        containerColor = MaterialTheme.colorScheme.primary,
-                        contentColor = MaterialTheme.colorScheme.onPrimary,
-                        modifier = modifier.padding(8.dp))
-    {
-        Icon(Icons.Filled.Add, "Add")
-    }
-    }){ it
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary,
+                modifier = modifier.padding(8.dp))
+            {
+                Icon(Icons.Filled.Add, "Add")
+            }
+        }){ it
         Column(modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight())
@@ -76,9 +74,9 @@ fun CashbookScreenContent(cashbook: List<Cashbook>,
             Spacer(modifier = Modifier.smallSpacer())
 
             LazyColumn{
-                items(cashbook, key = {it.id}){cashbookItem ->
-                    CashbookItem(cashbook = cashbookItem,
-                        onCashbookClick = onCashbookClick,
+                items(transaction, key = {it.id}){transactionItem ->
+                    TransactionItem(transaction = transactionItem,
+                        onTransactionClick = { function: (String) -> Unit, transaction: Transaction -> },
                         openScreen = openScreen)
                 }
             }
@@ -91,6 +89,6 @@ fun CashbookScreenContent(cashbook: List<Cashbook>,
 @Composable
 fun CashbookScreenPreview(){
     CashBookTheme {
-        CashbookScreen(openScreen = {})
+        TransactionScreen(openScreen = {})
     }
 }

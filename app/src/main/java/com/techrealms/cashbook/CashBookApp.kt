@@ -29,6 +29,8 @@ import com.techrealms.cashbook.BUSINESS_ID
 import com.techrealms.cashbook.BUSINESS_ID_ARG
 import com.techrealms.cashbook.BUSINESS_SCREEN
 import com.techrealms.cashbook.CASHBOOK_ADD_SCREEN
+import com.techrealms.cashbook.CASHBOOK_BUSINESS_ID_ARG
+import com.techrealms.cashbook.CASHBOOK_ID
 import com.techrealms.cashbook.CASHBOOK_SCREEN
 import com.techrealms.cashbook.CashBookAppState
 import com.techrealms.cashbook.EDIT_TASK_SCREEN
@@ -39,6 +41,8 @@ import com.techrealms.cashbook.SPLASH_SCREEN
 import com.techrealms.cashbook.STATS_SCREEN
 import com.techrealms.cashbook.TASK_ID
 import com.techrealms.cashbook.TASK_ID_ARG
+import com.techrealms.cashbook.TRANSACTION_ADD_SCREEN
+import com.techrealms.cashbook.TRANSACTION_SCREEN
 import com.techrealms.cashbook.common.snackbar.SnackbarManager
 import com.techrealms.cashbook.screens.business.add_business.AddBusinessScreen
 import com.techrealms.cashbook.screens.business.business_screen.BusinessScreen
@@ -48,6 +52,7 @@ import com.techrealms.cashbook.screens.login.LoginScreen
 import com.techrealms.cashbook.screens.settings.SettingsScreen
 import com.techrealms.cashbook.screens.sign_up.SignUpScreen
 import com.techrealms.cashbook.screens.splash.SplashScreen
+import com.techrealms.cashbook.screens.transaction.transaction_screen.TransactionScreen
 import com.techrealms.cashbook.ui.theme.CashBookTheme
 import kotlinx.coroutines.CoroutineScope
 
@@ -146,14 +151,36 @@ fun NavGraphBuilder.cashBookGraph(appState: CashBookAppState){
         arguments = listOf(navArgument(BUSINESS_ID){
             nullable = true
             defaultValue = null
-        }
-        )){
+        }))
+    {
         AddCashbookScreen(popupScreen = { appState.popUp()})
     }
 
-//    composable(CASHBOOK_ADD_SCREEN){
-//        AddCashbookScreen(popupScreen = { appState.popUp()})
-//    }
+    composable(route = "$TRANSACTION_SCREEN$CASHBOOK_BUSINESS_ID_ARG",
+        arguments = listOf(navArgument(BUSINESS_ID){
+            nullable = true
+            defaultValue = null
+        }, navArgument(CASHBOOK_ID){
+            nullable = true
+            defaultValue = null
+        })
+    )
+    {
+        TransactionScreen(openScreen = { route -> appState.navigate(route) })
+    }
+
+    composable(route = "$TRANSACTION_ADD_SCREEN$CASHBOOK_BUSINESS_ID_ARG",
+        arguments = listOf(navArgument(BUSINESS_ID){
+            nullable = true
+            defaultValue = null
+        }, navArgument(CASHBOOK_ID){
+            nullable = true
+            defaultValue = null
+        })
+    )
+    {
+        TransactionScreen(openScreen = { route -> appState.navigate(route) })
+    }
 
     composable(
         route = "$EDIT_TASK_SCREEN$TASK_ID_ARG",

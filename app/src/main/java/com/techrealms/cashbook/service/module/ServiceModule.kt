@@ -6,12 +6,14 @@ import com.techrealms.cashbook.service.CashbookStorageService
 import com.techrealms.cashbook.service.CategoryStorageService
 import com.techrealms.cashbook.service.ConfigurationService
 import com.techrealms.cashbook.service.LogService
+import com.techrealms.cashbook.service.TransactionStorageService
 import com.techrealms.cashbook.service.impl.AccountServiceImpl
 import com.techrealms.cashbook.service.impl.BusinessStorageServiceImpl
 import com.techrealms.cashbook.service.impl.CashbookStorageServiceImpl
 import com.techrealms.cashbook.service.impl.CategoryStorageServiceImpl
 import com.techrealms.cashbook.service.impl.ConfigurationServiceImpl
 import com.techrealms.cashbook.service.impl.LogServiceImpl
+import com.techrealms.cashbook.service.impl.TransactionStorageServiceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -37,8 +39,8 @@ abstract class ServiceModule
     abstract fun provideCashbookStorageService(impl: CashbookStorageServiceImpl): CashbookStorageService
 
     @Binds
+    abstract fun provideTransactionStorageService(impl: TransactionStorageServiceImpl): TransactionStorageService
+
+    @Binds
     abstract fun provideBusinessStorageService(impl: BusinessStorageServiceImpl): BusinessStorageService
-//
-//    @Binds
-//    abstract fun provideStorageService(impl: StorageServiceImpl): StorageService
 }

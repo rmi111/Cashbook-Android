@@ -108,7 +108,7 @@ fun DropdownSelector(@StringRes label: Int,
 private fun dropdownColors(): TextFieldColors
 {
     return ExposedDropdownMenuDefaults.textFieldColors(
-        containerColor = MaterialTheme.colorScheme.onPrimary,
+        //conte = MaterialTheme.colorScheme.onPrimary,
         focusedIndicatorColor = Color.Transparent,
         unfocusedIndicatorColor = Color.Transparent,
         disabledTrailingIconColor = MaterialTheme.colorScheme.onSurface,

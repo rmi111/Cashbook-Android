@@ -40,6 +40,21 @@ fun BasicField(@StringRes text: Int,
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+fun BasicNumberField(@StringRes text: Int,
+               value: String,
+               onNewValue: (String) -> Unit,
+               modifier: Modifier = Modifier){
+    OutlinedTextField(
+        singleLine = true,
+        modifier = modifier,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        value = value,
+        onValueChange = onNewValue,
+        placeholder = { "0.0" })
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
 fun EmailField(value: String, onNewValue: (String) -> Unit, modifier: Modifier = Modifier) {
     OutlinedTextField(
         singleLine = true,
