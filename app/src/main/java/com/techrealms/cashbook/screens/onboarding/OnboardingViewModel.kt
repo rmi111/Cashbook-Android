@@ -1,9 +1,9 @@
-package com.techrealms.cashbook.screens.splash
+package com.techrealms.cashbook.screens.onboarding
 
 import androidx.compose.runtime.mutableStateOf
 import com.google.firebase.auth.FirebaseAuthException
+import com.techrealms.cashbook.BUSINESS_SCREEN
 import com.techrealms.cashbook.ONBOARDING_SCREEN
-import com.techrealms.cashbook.SPLASH_SCREEN
 import com.techrealms.cashbook.screens.CashBookViewModel
 import com.techrealms.cashbook.service.AccountService
 import com.techrealms.cashbook.service.ConfigurationService
@@ -12,7 +12,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SplashViewModel @Inject constructor(configurationService: ConfigurationService,
+class OnboardingViewModel @Inject constructor(configurationService: ConfigurationService,
                                           private val accountService: AccountService,
                                           logService: LogService
 ): CashBookViewModel(logService)
@@ -26,14 +26,14 @@ class SplashViewModel @Inject constructor(configurationService: ConfigurationSer
     fun onAppStart(openAndPopup: (String, String) -> Unit){
         showError.value = false
         //createAnonymousAccount(openAndPopup)
-        if(accountService.hasUser)
-        {
-            openAndPopup(ONBOARDING_SCREEN, SPLASH_SCREEN)
-        }
-        else
-        {
-            createAnonymousAccount(openAndPopup)
-        }
+//        if(accountService.hasUser)
+//        {
+//            openAndPopup(BUSINESS_SCREEN, ONBOARDING_SCREEN)
+//        }
+//        else
+//        {
+//            createAnonymousAccount(openAndPopup)
+//        }
     }
 
     private fun createAnonymousAccount(openAndPopup: (String, String) -> Unit){
@@ -45,7 +45,7 @@ class SplashViewModel @Inject constructor(configurationService: ConfigurationSer
                 throw ex
             }
 
-            openAndPopup(ONBOARDING_SCREEN, SPLASH_SCREEN)
+            openAndPopup(BUSINESS_SCREEN, ONBOARDING_SCREEN)
         }
     }
 }

@@ -59,7 +59,7 @@ fun SplashScreenContent(
 //        }
 //        else{
 
-        Image(painter = painterResource(id = R.drawable.book),
+        Image(painter = painterResource(id = R.drawable.logo),
                 contentDescription = "logo")
 
         Spacer(modifier = Modifier.height(25.dp))

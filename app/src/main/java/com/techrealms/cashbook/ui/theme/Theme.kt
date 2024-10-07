@@ -10,22 +10,47 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val DarkColorScheme = darkColorScheme(
-    primary = BrightBlue,
-    secondary = DarkBlue,
-    tertiary = MediumBlue
+private val darkColorScheme = darkColorScheme(
+    background = NeutralDarkOne,
+    surface = NeutralGreyOne,
+    primary = NeutralDarkOne,
+    primaryContainer = NeutralDarkOne,
+    onPrimaryContainer = NeutralWhite,
+    secondary = PrimaryLight,
+    tertiary = NeutralGreyFour,
+    onBackground = NeutralWhite,
+    onTertiaryContainer = NeutralWhite,
+    onSurface = PrimaryBrand,
+    outline = NeutralGreyFive,
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = BrightBlue,
-    secondary = DarkBlue,
-    tertiary = MediumBlue
+private val lightColorScheme = lightColorScheme(
+    primary = Color.Black,
+    onPrimary = Color.Black,
+    primaryContainer = NeutralDarkOne,
+    onPrimaryContainer = NeutralGreyOne,
+    secondary = PrimaryLight,
+    tertiary = NeutralGreyFour,
+    onTertiaryContainer = NeutralDarkOne,
+    onSurface = NeutralGreyOne,
+    //onBackground = Color.White,
+   // background = NeutralWhite,
+    surface = NeutralDarkOne,
+    outline = NeutralGreyFive,
 
+//    primary = Color.Red,
+//    onPrimary = Color.Red,
+//    onSecondary = Color.Red,
+//    onTertiaryContainer = Color.Red,
+//    onTertiary = Color.Red,
+//    onBackground = Color.White,
+//    onSurface = Color.Red,
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
     surface = Color(0xFFFFFBFE),
@@ -50,14 +75,15 @@ fun CashBookTheme(
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
+        darkTheme -> darkColorScheme
+        else -> lightColorScheme
     }
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
             window.statusBarColor = colorScheme.primary.toArgb()
+            window.navigationBarColor = colorScheme.primary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }

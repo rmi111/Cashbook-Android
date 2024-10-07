@@ -35,6 +35,7 @@ import com.techrealms.cashbook.CASHBOOK_SCREEN
 import com.techrealms.cashbook.CashBookAppState
 import com.techrealms.cashbook.EDIT_TASK_SCREEN
 import com.techrealms.cashbook.LOGIN_SCREEN
+import com.techrealms.cashbook.ONBOARDING_SCREEN
 import com.techrealms.cashbook.SETTINGS_SCREEN
 import com.techrealms.cashbook.SIGN_UP_SCREEN
 import com.techrealms.cashbook.SPLASH_SCREEN
@@ -49,6 +50,7 @@ import com.techrealms.cashbook.screens.business.business_screen.BusinessScreen
 import com.techrealms.cashbook.screens.cashbook.add_cashbook.AddCashbookScreen
 import com.techrealms.cashbook.screens.cashbook.cashbook_screen.CashbookScreen
 import com.techrealms.cashbook.screens.login.LoginScreen
+import com.techrealms.cashbook.screens.onboarding.OnboardingScreen
 import com.techrealms.cashbook.screens.settings.SettingsScreen
 import com.techrealms.cashbook.screens.sign_up.SignUpScreen
 import com.techrealms.cashbook.screens.splash.SplashScreen
@@ -60,11 +62,15 @@ import kotlinx.coroutines.CoroutineScope
 @ExperimentalMaterial3Api
 fun CashBookApp(){
     CashBookTheme {
-        Surface(color = MaterialTheme.colorScheme.background,
-            modifier = Modifier.fillMaxSize()) {
+        Surface(
+            color = MaterialTheme.colorScheme.background,
+            modifier = Modifier.fillMaxSize()
+        )
+        {
             val appState = rememberAppState()
 
-            Scaffold(snackbarHost = {
+            Scaffold(
+                snackbarHost = {
                 SnackbarHost (hostState = appState.snackbarHost,
                     modifier = Modifier.padding(8.dp),
                     snackbar = {snackbarData ->
@@ -107,6 +113,10 @@ fun resources(): Resources{
 fun NavGraphBuilder.cashBookGraph(appState: CashBookAppState){
     composable(SPLASH_SCREEN) {
         SplashScreen(openAndPopup = { route, popUp -> appState.navigateAndPopUp(route, popUp) })
+    }
+
+    composable(ONBOARDING_SCREEN) {
+        OnboardingScreen(openAndPopup = { route, popUp -> appState.navigateAndPopUp(route, popUp) })
     }
 
     composable(SETTINGS_SCREEN) {

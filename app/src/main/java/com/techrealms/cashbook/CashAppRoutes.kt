@@ -1,6 +1,7 @@
 package com.techrealms.cashbook
 
 const val SPLASH_SCREEN = "SplashScreen"
+const val ONBOARDING_SCREEN = "OnboardingScreen"
 const val SETTINGS_SCREEN = "SettingsScreen"
 const val LOGIN_SCREEN = "LoginScreen"
 const val SIGN_UP_SCREEN = "SignUpScreen"
