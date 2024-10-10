@@ -2,7 +2,6 @@ package com.techrealms.cashbook.screens.onboarding
 
 import android.content.Context
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,6 +34,7 @@ import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import com.techrealms.cashbook.MainActivity
 import com.techrealms.cashbook.R
+import com.techrealms.cashbook.common.composable.BasicButton
 import com.techrealms.cashbook.common.composable.PageIndicator
 import com.techrealms.cashbook.ui.theme.CashBookTheme
 import kotlinx.coroutines.launch
@@ -147,13 +147,31 @@ fun OnboardingScreenContent(modifier: Modifier = Modifier,
             currentPage = pagerState.currentPage,
             modifier = Modifier //.padding(60.dp)
         )
+        val scope = rememberCoroutineScope()
+        BasicButton(text = R.string.btn_lets_go, modifier = Modifier
+            .fillMaxWidth()
+            .padding(
+                top = 48.dp,
+                start = 16.dp,
+                end = 16.dp)
+            .height(56.dp)
+        ) {
+            scope.launch {
+                if (pagerState.currentPage != 2) {
+                    val nextPage = pagerState.currentPage + 1
+                    pagerState.scrollToPage(nextPage)
+                }else{
+                   onAppStart()
+                }
+            }
+        }
     }
 
-    ButtonsSection(
-        pagerState = pagerState,
-       // navController = navController,
-       // context = context
-    )
+//    ButtonsSection(
+//        pagerState = pagerState,
+//       // navController = navController,
+//       // context = context
+//    )
 
 }
 
@@ -168,46 +186,47 @@ fun ButtonsSection(pagerState: PagerState) //, navController: NavHostController,
         .padding(30.dp)){
         //BasicTextInputField()
         if (pagerState.currentPage != 2){
+            BasicButton(text = R.string.app_name, modifier = Modifier.align(Alignment.BottomEnd)) { }
 //            PageIndicator(
 //                pageCount = 3,
 //                currentPage = pagerState.currentPage,
 //                modifier = Modifier.align(Alignment.BottomEnd) //.padding(60.dp)
 //            )
-            Text(text = "Next",
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .clickable {
-
-                        scope.launch {
-                            val nextPage = pagerState.currentPage +1
-                            pagerState.scrollToPage(nextPage)
-                        }
-                    },
-                fontSize = 22.sp,
-                fontWeight = FontWeight.Bold,
-                //color = Color.Black
-            )
-            Text(text = "Back",
-                modifier = Modifier
-                    .align(Alignment.BottomStart)
-                    .clickable {
-                        scope.launch {
-                            val prevPage = pagerState.currentPage -1
-                            if (prevPage >= 0){
-                                pagerState.scrollToPage(prevPage)
-                            }
-                        }
-                    },
-                fontSize = 22.sp,
-                fontWeight = FontWeight.Bold,
-                //color = Color.Black
-            )
+//            Text(text = "Next",
+//                modifier = Modifier
+//                    .align(Alignment.BottomEnd)
+//                    .clickable {
+//
+//                        scope.launch {
+//                            val nextPage = pagerState.currentPage +1
+//                            pagerState.scrollToPage(nextPage)
+//                        }
+//                    },
+//                fontSize = 22.sp,
+//                fontWeight = FontWeight.Bold,
+//                //color = Color.Black
+//            )
+//            Text(text = "Back",
+//                modifier = Modifier
+//                    .align(Alignment.BottomStart)
+//                    .clickable {
+//                        scope.launch {
+//                            val prevPage = pagerState.currentPage -1
+//                            if (prevPage >= 0){
+//                                pagerState.scrollToPage(prevPage)
+//                            }
+//                        }
+//                    },
+//                fontSize = 22.sp,
+//                fontWeight = FontWeight.Bold,
+//                //color = Color.Black
+//            )
         }else{
             OutlinedButton(onClick = {
 
-                //onBoardingIsFinished(context = context)
-               // navController.popBackStack()
-               // navController.navigate("Home")
+//                onBoardingIsFinished(context = context)
+//                navController.popBackStack()
+//                navController.navigate("Home")
             },
                 modifier = Modifier
                     .fillMaxWidth()

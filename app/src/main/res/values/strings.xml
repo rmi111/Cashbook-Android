@@ -10,6 +10,7 @@
     <string name="try_again">Try again</string>
     <string name="ok">OK</string>
 
+    <string name="btn_lets_go">LET\'S GO</string>
     <!-- LoginScreen -->
     <string name="sign_in">Sign in</string>
     <string name="login_details">Enter your login details</string>
