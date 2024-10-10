@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -81,6 +82,29 @@ fun OnboardingScreenContent(modifier: Modifier = Modifier,
         Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(Modifier.height(32.dp))
+
+        Row(modifier = Modifier.padding(top = 16.dp),
+            verticalAlignment = Alignment.CenterVertically){
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "logo",
+                modifier = Modifier.height(64.dp).width(48.dp)
+            )
+            Spacer(Modifier.width(4.dp))
+            Text(
+                text = "Cash Book",
+                textAlign = TextAlign.Center,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold,
+                style = TextStyle(
+                    platformStyle = PlatformTextStyle(
+                        includeFontPadding = false
+                    ))
+            )
+        }
+
+        Spacer(Modifier.height(32.dp))
 
         HorizontalPager(
             state = pagerState,
@@ -89,32 +113,12 @@ fun OnboardingScreenContent(modifier: Modifier = Modifier,
             Column(
                 Modifier
                     .wrapContentSize()
-                    .padding(26.dp),
+                    .padding(start = 26.dp, end = 26.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                Row(modifier = Modifier.padding(top = 48.dp),
-                    verticalAlignment = Alignment.CenterVertically){
-                    Image(
-                        painter = painterResource(id = R.drawable.logo),
-                        contentDescription = "logo",
-                        modifier = Modifier.height(64.dp).width(48.dp)
-                    )
-                    Spacer(Modifier.width(4.dp))
-                    Text(
-                        text = "Cash Book",
-                        textAlign = TextAlign.Center,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                        style = TextStyle(
-                            platformStyle = PlatformTextStyle(
-                                includeFontPadding = false
-                            ))
-                    )
-                }
 
-                Spacer(modifier = Modifier.height(48.dp))
-
+                Spacer(modifier = Modifier.height(32.dp))
                 //val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(animations[currentPage]))
                 Image(
                     painter = painterResource(id = images[currentPage]),
@@ -122,11 +126,11 @@ fun OnboardingScreenContent(modifier: Modifier = Modifier,
                     modifier = Modifier.padding(start = 50.dp, end = 50.dp)
                 )
 
-                Spacer(modifier = Modifier.height(64.dp))
+                Spacer(modifier = Modifier.height(32.dp))
 
                 Text(
                     text = titles[currentPage],
-                    Modifier.padding(top = 24.dp),
+                    Modifier.padding(top = 16.dp),
                     textAlign = TextAlign.Center,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
@@ -142,37 +146,36 @@ fun OnboardingScreenContent(modifier: Modifier = Modifier,
             }
         }
 
+        Spacer(modifier = Modifier.height(24.dp))
+
         PageIndicator(
             pageCount = 3,
             currentPage = pagerState.currentPage,
             modifier = Modifier //.padding(60.dp)
         )
         val scope = rememberCoroutineScope()
-        BasicButton(text = R.string.btn_lets_go, modifier = Modifier
-            .fillMaxWidth()
-            .padding(
-                top = 48.dp,
-                start = 16.dp,
-                end = 16.dp)
-            .height(56.dp)
-        ) {
-            scope.launch {
-                if (pagerState.currentPage != 2) {
-                    val nextPage = pagerState.currentPage + 1
-                    pagerState.scrollToPage(nextPage)
-                }else{
-                   onAppStart()
+        Row(modifier = Modifier.padding(top = 16.dp, bottom = 48.dp).fillMaxHeight(),
+            verticalAlignment = Alignment.Bottom) {
+            BasicButton(
+                text = R.string.btn_lets_go, modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(
+                        start = 16.dp,
+                        end = 16.dp
+                    )
+                    .height(56.dp)
+            ) {
+                scope.launch {
+                    if (pagerState.currentPage != 2) {
+                        val nextPage = pagerState.currentPage + 1
+                        pagerState.scrollToPage(nextPage)
+                    } else {
+                        onAppStart()
+                    }
                 }
             }
         }
     }
-
-//    ButtonsSection(
-//        pagerState = pagerState,
-//       // navController = navController,
-//       // context = context
-//    )
-
 }
 
 @OptIn(ExperimentalPagerApi::class)
@@ -187,46 +190,10 @@ fun ButtonsSection(pagerState: PagerState) //, navController: NavHostController,
         //BasicTextInputField()
         if (pagerState.currentPage != 2){
             BasicButton(text = R.string.app_name, modifier = Modifier.align(Alignment.BottomEnd)) { }
-//            PageIndicator(
-//                pageCount = 3,
-//                currentPage = pagerState.currentPage,
-//                modifier = Modifier.align(Alignment.BottomEnd) //.padding(60.dp)
-//            )
-//            Text(text = "Next",
-//                modifier = Modifier
-//                    .align(Alignment.BottomEnd)
-//                    .clickable {
-//
-//                        scope.launch {
-//                            val nextPage = pagerState.currentPage +1
-//                            pagerState.scrollToPage(nextPage)
-//                        }
-//                    },
-//                fontSize = 22.sp,
-//                fontWeight = FontWeight.Bold,
-//                //color = Color.Black
-//            )
-//            Text(text = "Back",
-//                modifier = Modifier
-//                    .align(Alignment.BottomStart)
-//                    .clickable {
-//                        scope.launch {
-//                            val prevPage = pagerState.currentPage -1
-//                            if (prevPage >= 0){
-//                                pagerState.scrollToPage(prevPage)
-//                            }
-//                        }
-//                    },
-//                fontSize = 22.sp,
-//                fontWeight = FontWeight.Bold,
-//                //color = Color.Black
-//            )
+
         }else{
             OutlinedButton(onClick = {
 
-//                onBoardingIsFinished(context = context)
-//                navController.popBackStack()
-//                navController.navigate("Home")
             },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -244,34 +211,6 @@ fun ButtonsSection(pagerState: PagerState) //, navController: NavHostController,
     }
 }
 
-//@Composable
-//fun PageIndicator(pageCount: Int, currentPage: Int, modifier: Modifier) {
-//
-//    Row(
-//        horizontalArrangement = Arrangement.SpaceBetween,
-//        modifier = modifier,
-//        verticalAlignment = Alignment.Bottom
-//    ) {
-//        repeat(pageCount){
-//            IndicatorSingleDot(isSelected = it == currentPage )
-//        }
-//
-//
-//    }
-//}
-//
-//@Composable
-//fun IndicatorSingleDot(isSelected: Boolean) {
-//
-//    val width = animateDpAsState(targetValue = if (isSelected) 35.dp else 15.dp, label = "")
-//    Box(modifier = Modifier
-//        .padding(2.dp)
-//        .height(15.dp)
-//        .width(width.value)
-//        .clip(CircleShape)
-//        .background(if (isSelected) colorScheme.tertiary else colorScheme.primary)
-//    )
-//}
 
 private fun onBoardingIsFinished(context: MainActivity) {
     val sharedPreferences = context.getSharedPreferences("onBoarding", Context.MODE_PRIVATE)
@@ -281,50 +220,6 @@ private fun onBoardingIsFinished(context: MainActivity) {
 
 }
 
-//@Composable
-//fun OnboardingScreenContent(
-//    modifier: Modifier = Modifier,
-//    onAppStart: () -> Unit,
-//    shouldShowError:Boolean)
-//{
-//    Column(modifier = modifier
-//        .fillMaxWidth()
-//        .fillMaxHeight()
-//        .background(color = MaterialTheme.colorScheme.background)
-//        .verticalScroll(rememberScrollState()),
-//        verticalArrangement = Arrangement.Center,
-//        horizontalAlignment = Alignment.CenterHorizontally)
-//    {
-////        if(shouldShowError)
-////        {
-////            Text(text = stringResource(id = AppText.generic_error))
-////            BasicButton(AppText.try_again, Modifier.basicButton()){ onAppStart() }
-////        }
-////        else{
-//
-//        Image(painter = painterResource(id = R.drawable.book),
-//            contentDescription = "logo")
-//
-//        Spacer(modifier = Modifier.height(25.dp))
-//
-//        Text(
-//            text = stringResource(id = R.string.app_name),
-//            style = MaterialTheme.typography.headlineMedium,
-//            // fontSize = 24.sp,
-//            color = MaterialTheme.colorScheme.onBackground,
-//            fontWeight = FontWeight.Bold,
-//            textAlign = TextAlign.Center,
-//            letterSpacing = 1.sp,
-//        )
-//        // CircularProgressIndicator(color = MaterialTheme.colorScheme.onBackground)
-//
-//
-////        LaunchedEffect(true){
-////            delay(SPLASH_TIMEOUT)
-////            onAppStart()
-////        }
-//    }
-//}
 
 @Preview(showBackground = true)
 @Composable

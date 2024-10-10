@@ -39,9 +39,9 @@ private val lightColorScheme = lightColorScheme(
     tertiary = NeutralGreyFour,
     onTertiaryContainer = NeutralDarkOne,
     onSurface = NeutralGreyOne,
-    //onBackground = Color.White,
+    onBackground = NeutralDarkOne,
    // background = NeutralWhite,
-    surface = NeutralDarkOne,
+    surface = NeutralWhite,
     outline = NeutralGreyFive,
 
 //    primary = Color.Red,
@@ -82,8 +82,8 @@ fun CashBookTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            window.navigationBarColor = colorScheme.primary.toArgb()
+            window.statusBarColor = colorScheme.surface.toArgb()
+            window.navigationBarColor = colorScheme.surface.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }

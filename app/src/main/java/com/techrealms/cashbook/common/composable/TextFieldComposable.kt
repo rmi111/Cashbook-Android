@@ -96,14 +96,17 @@ fun BasicTextInputField(placeholder: String,
                 }
             },
             trailingIcon = {
-                IconButton(modifier = Modifier.padding(end = 8.dp),onClick = {  })
-                {
-                    Icon(
-                        painterResource(trailingIcon),
-                        contentDescription = null,
-                        tint = Color.Black
-                    )
+                if(trailingIcon == -1) {null} else {
+                    IconButton(modifier = Modifier.padding(end = 8.dp),onClick = {  })
+                    {
+                        Icon(
+                            painterResource(trailingIcon),
+                            contentDescription = null,
+                            tint = Color.Black
+                        )
+                    }
                 }
+
             },
         )
     }
@@ -117,19 +120,6 @@ fun BasicTextInputField(value:String)
     Column(modifier = Modifier.padding(8.dp)) {
         var textState by remember { mutableStateOf("") }
         val maxLength = 110
-//        val lightBlue = Color(0xFFD8E6FF)
-//        val blue = Color(0xff76a9ff)
-
-//        Text(
-//            text = "Caption",
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(bottom = 4.dp),
-//                //.background(Color(0xFFF5F6F7)),
-//            fontSize = 13.sp,
-//            textAlign = TextAlign.Start,
-//            //color = blue
-//        )
 
         OutlinedTextField(
             modifier = Modifier
@@ -168,31 +158,8 @@ fun BasicTextInputField(value:String)
                     )
                 }
             },
-//            trailingIcon = {
-//                IconButton(onClick = { textState = "" }) {
-//                    Icon(
-//                        imageVector = Icons.Outlined.Close,
-//                        contentDescription = null
-//                    )
-//                }
-//                if (textState.isNotEmpty()) {
-//                    IconButton(onClick = { textState = "" }) {
-//                        Icon(
-//                            imageVector = Icons.Outlined.Close,
-//                            contentDescription = null
-//                        )
-//                    }
-//                }
-//            }
+
         )
-//        Text(
-//            text = "${textState.length} / $maxLength",
-//            modifier = Modifier
-//                .fillMaxWidth()
-//                .padding(top = 4.dp),
-//            textAlign = TextAlign.End,
-//            //color = blue
-//        )
     }
 }
 
@@ -220,7 +187,6 @@ fun EmailField(value: String, onNewValue: (String) -> Unit, modifier: Modifier =
         value = value,
         onValueChange = { onNewValue(it) },
         placeholder = { Text(stringResource(AppText.email)) },
-        //leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "Email") }
     )
 }
 
@@ -268,7 +234,7 @@ private fun PasswordField(
         value = value,
         shape = RoundedCornerShape(18.dp),
         onValueChange = { onNewValue(it) },
-        placeholder = { Text(text = stringResource(placeholder)) },
+        placeholder = { Text(text = stringResource(placeholder),color = Color(0xFF9BA1A8)) },
         leadingIcon = { IconButton(modifier = Modifier.padding(start = 8.dp),
             onClick = {  })
         {
@@ -291,13 +257,11 @@ private fun PasswordField(
 @Composable
 fun TextFieldPreview() {
     CashBookTheme {
-        //EmailField(value = "", onNewValue = {}, modifier = Modifier)
-//        BasicTextInputField(value = "Hello",
-//            placeholder = "",
-//            onNewValue = {},
-//            leadingIcon = R.drawable.profile,
-//            trailingIcon = R.drawable.profile)
-        PasswordField(value = "", placeholder = R.string.app_name, onNewValue = {})
+        BasicTextInputField(value = "Hello",
+            placeholder = "",
+            onNewValue = {},
+            leadingIcon = R.drawable.profile,
+            trailingIcon = -1)
     }
 }
 

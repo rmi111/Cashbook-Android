@@ -3,6 +3,7 @@ package com.techrealms.cashbook.screens.onboarding
 import androidx.compose.runtime.mutableStateOf
 import com.google.firebase.auth.FirebaseAuthException
 import com.techrealms.cashbook.BUSINESS_SCREEN
+import com.techrealms.cashbook.LOGIN_SCREEN
 import com.techrealms.cashbook.ONBOARDING_SCREEN
 import com.techrealms.cashbook.screens.CashBookViewModel
 import com.techrealms.cashbook.service.AccountService
@@ -26,6 +27,7 @@ class OnboardingViewModel @Inject constructor(configurationService: Configuratio
     fun onAppStart(openAndPopup: (String, String) -> Unit){
         showError.value = false
         //createAnonymousAccount(openAndPopup)
+        openAndPopup(LOGIN_SCREEN, ONBOARDING_SCREEN)
 //        if(accountService.hasUser)
 //        {
 //            openAndPopup(BUSINESS_SCREEN, ONBOARDING_SCREEN)
